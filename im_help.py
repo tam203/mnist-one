@@ -1,4 +1,7 @@
-import Image
+try:
+    import Image
+except ImportError:
+    from PIL import Image
 import numpy as np
 
 def image_from_2d(mat,path):
@@ -12,8 +15,8 @@ def image_from_2d(mat,path):
     im_data = im.load()
     for i in range(im.width):
         for j in range(im.height):
-            r = int(mat[i,j] * norm) if mat[i,j] > 0 else 0
-            b = -int(mat[i,j] * norm) if mat[i,j] < 0 else 0
+            b = int(mat[i,j] * norm) if mat[i,j] > 0 else 0
+            r = -int(mat[i,j] * norm) if mat[i,j] < 0 else 0
             im_data[i,j] = (r, 0, b)
     im.save(path)
 

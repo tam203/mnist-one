@@ -21,8 +21,8 @@ init = tf.initialize_all_variables()
 sess = tf.Session()
 sess.run(init)
 
-for i in range(100):
-    batch_xs, batch_ys = mnist.train.next_batch(1000)
+for i in range(1000):
+    batch_xs, batch_ys = mnist.train.next_batch(100)
     sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
@@ -35,11 +35,5 @@ WArr = sess.run(W)
 
 newim = im_help.image_from_2d(im_help.reshape(WArr[:,0]), "zero.png")
 
-#print WArr[:,0]
-print (WArr[:,1])
-
-print (WArr.shape[1])
 for i in range(WArr.shape[1]):
-    newim = im_help.image_from_2d(im_help.reshape(WArr[:,i]), "W%s.png"%i)
-
-#tf.Print(b,[b],message="Tensor...")
+    newim = im_help.image_from_2d(im_help.reshape(WArr[:,i]), "W_images/W%s.png"%i)
